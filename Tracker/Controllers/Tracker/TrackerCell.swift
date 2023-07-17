@@ -2,18 +2,12 @@ import UIKit
 import SnapKit
 
 protocol TrackerCellDelegate: AnyObject {
-    func completeTracker(id: UUID, at indexPath: IndexPath)
-    func uncompleteTracker(id: UUID, at indexPath: IndexPath)
+    func plusButtonTaped(cell: TrackerCell)
 }
 
 class TrackerCell: UICollectionViewCell {
     static let identifier = "TrackerCell"
-    
     weak var delegate: TrackerCellDelegate?
-    
-    private var isCompletedToday: Bool = false
-    private var trackerId: UUID?
-    private var indexPath: IndexPath?
     
     private lazy var cellView: UIView = {
         let view = UIView()
@@ -35,7 +29,7 @@ class TrackerCell: UICollectionViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .ypWhiteDay
-        label.text = " "
+        label.text = ""
         label.font = .ysDisplayMedium(size: 12)
         return label
     }()
@@ -44,7 +38,7 @@ class TrackerCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .ysDisplayMedium(size: 12)
         label.textColor = .ypBlackDay
-        label.text = " "
+        label.text = ""
         return label
     }()
     
@@ -60,6 +54,8 @@ class TrackerCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        setupViews()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -67,15 +63,7 @@ class TrackerCell: UICollectionViewCell {
     }
     
     @objc func plusButtonTapped() {
-        guard let trackerId = trackerId, let indexPath = indexPath else {
-            assertionFailure("no trackerId")
-            return
-        }
-        if isCompletedToday {
-            delegate?.uncompleteTracker(id: trackerId, at: indexPath)
-        } else {
-            delegate?.completeTracker(id: trackerId, at: indexPath)
-        }
+        delegate?.plusButtonTaped(cell: self)
     }
     
     func setupViews() {
@@ -120,27 +108,20 @@ class TrackerCell: UICollectionViewCell {
         }
     }
 
-    func configure(
-        for cell: UICollectionViewCell,
-        with tracker: Tracker,
-        isCompletedToday: Bool,
-        completedDays: Int,
-        indexPath: IndexPath
-    ) {
-        self.trackerId = tracker.id
-        self.isCompletedToday = isCompletedToday
-        self.indexPath = indexPath
-        self.plusButton.backgroundColor = tracker.color
-         
-        setupViews()
-        setupConstraints()
-        
-        cellView.backgroundColor = tracker.color
-        daysCounterLabel.text = "\(completedDays) days"
-        emojiLabel.text = tracker.emoji
+    func configure(tracker: Tracker) {
         titleLabel.text = tracker.title
-        
+        emojiLabel.text = tracker.emoji
+        cellView.backgroundColor = tracker.color
+        plusButton.backgroundColor = tracker.color
+    }
+    
+    func configRecord(completedDays: Int, isCompletedToday: Bool) {
         let title = isCompletedToday ? "✓" : "+"
         plusButton.setTitle(title, for: .normal)
+        
+        let opacity: Float = isCompletedToday ? 0.3 : 1
+        plusButton.layer.opacity = opacity
+        
+        daysCounterLabel.text = "\(completedDays) Дней"
     }
 }

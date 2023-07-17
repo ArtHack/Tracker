@@ -7,8 +7,6 @@ protocol ScheduleViewControllerDelegate: AnyObject {
 
 class ScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    private let daysOfTheWeek = Weekdays.allCases.map { $0.rawValue }
-    private var habitActiveDays: [Weekdays] = []
     weak var delegate: ScheduleViewControllerDelegate?
     private var switchedDays: [Weekdays] = []
     
@@ -80,8 +78,8 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    private func radyButtonIsEnable() {
-        if habitActiveDays.count > 0 {
+    private func readyButtonIsEnable() {
+        if switchedDays.count > 0 {
             readyButton.isEnabled = true
             readyButton.backgroundColor = .ypBlackDay
         } else {
@@ -92,13 +90,13 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     
     @objc func daySwitchChanged(_ sender: UISwitch) {
         if sender.isOn {
-            habitActiveDays.append(Weekdays.allCases[sender.tag])
+            switchedDays.append(Weekdays.allCases[sender.tag])
         } else {
-            if let index = habitActiveDays.firstIndex(of: Weekdays.allCases[sender.tag]) {
-                habitActiveDays.remove(at: index)
+            if let index = switchedDays.firstIndex(of: Weekdays.allCases[sender.tag]) {
+                switchedDays.remove(at: index)
             }
         }
-        radyButtonIsEnable()
+        readyButtonIsEnable()
     }
     
     @objc func readyButtonTaped() {
@@ -113,19 +111,22 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        return daysOfTheWeek.count
+        return Weekdays.allCases.count
     }
     
     func tableView(
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = daysOfTheWeek[indexPath.row]
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        cell.selectionStyle = .none
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 17)
+        cell.textLabel?.text = Weekdays.allCases[indexPath.row].rawValue
         cell.backgroundColor = .ypBackgroundNight
         
         let daySwitch = UISwitch()
         daySwitch.onTintColor = .ypBlue
+        daySwitch.tag = indexPath.row
         cell.accessoryView = daySwitch
         
         daySwitch.addTarget(self, action: #selector(daySwitchChanged), for: .valueChanged)

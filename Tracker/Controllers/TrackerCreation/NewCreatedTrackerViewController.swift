@@ -10,11 +10,10 @@ class NewCreatedTrackerViewController: UIViewController {
     var newCreatedTrackerType: TrackerType?
     var tableViewHeight: CGFloat?
     weak var delegate: AddNewTrackerCategoryDelegate?
-    var trackerText = " "
+    var trackerText = ""
     private var timetable: [Weekdays] = []
-    private var currentCategory: String?
+    private var currentCategory: String? = "Category"
     var currrentSchedule: [Weekdays] = []
-    var newTracker: TrackerCategory?
     
     private enum Section: Int, CaseIterable {
         case emojis
@@ -197,6 +196,7 @@ class NewCreatedTrackerViewController: UIViewController {
         button.clipsToBounds = true
         button.layer.cornerRadius = 16
         button.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
+        button.isEnabled = false
         return button
     } ()
     
@@ -205,7 +205,7 @@ class NewCreatedTrackerViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        setupDataSource()
+//        setupDataSource()
         setupViews()
         setupConstraints()
         
@@ -273,7 +273,7 @@ class NewCreatedTrackerViewController: UIViewController {
     
     @objc private func createButtonTapped() {
         dismiss(animated: true) {
-            self.delegate?.addNewTrackerCategory(TrackerCategory(title: "Категория", trackers: [Tracker(id: UUID(), title: self.trackerText , color: .section1, emoji: "✅", timetable: self.timetable)]))
+            self.delegate?.addNewTrackerCategory(TrackerCategory(title: "CAtegory", trackers: [Tracker(id: UUID(), title: self.trackerText, color: .section1, emoji: "✅", timetable: self.timetable)]))
         }
     }
     
@@ -282,7 +282,9 @@ class NewCreatedTrackerViewController: UIViewController {
     }
     
     private func createButtonIsEnable() {
-        if searchTextField.text?.isEmpty == false && ((currentCategory?.isEmpty) != nil) {
+        if searchTextField.text?.isEmpty == false
+            && ((currentCategory?.isEmpty) != nil)
+        {
             createButton.backgroundColor = .ypBlackDay
             createButton.setTitleColor(.ypWhiteDay, for: .normal)
             createButton.isEnabled = true
@@ -326,26 +328,6 @@ extension NewCreatedTrackerViewController: UITableViewDataSource {
         }
     }
     
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
-//        cell.accessoryType = .disclosureIndicator
-//        cell.selectionStyle = .none
-//        cell.backgroundColor = .clear
-//        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 17)
-//        cell.detailTextLabel?.textColor = .trGray
-//
-//        switch indexPath.row {
-//        case 0:
-//            cell.textLabel?.text = "Категория"
-//            cell.detailTextLabel?.text = currentCategory
-//        case 1:
-//            cell.textLabel?.text = "Расписание"
-//        default:
-//            break
-//        }
-//        return cell
-//    }
-//
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
@@ -361,8 +343,6 @@ extension NewCreatedTrackerViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             cell.textLabel?.text = "Категория"
-            cell.detailTextLabel?.text = currentCategory
-
         case 1:
             cell.textLabel?.text = "Расписание"
 
@@ -382,7 +362,7 @@ extension NewCreatedTrackerViewController: UITableViewDataSource {
 
 extension NewCreatedTrackerViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        trackerText = textField.text ?? " "
+        trackerText = textField.text ?? ""
         textField.resignFirstResponder()
         return true
     }
@@ -409,10 +389,11 @@ extension NewCreatedTrackerViewController: UITextFieldDelegate {
         }
         return true
     }
+
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if searchTextField.text?.isEmpty == true {
-            createButton.backgroundColor = .ypGray
+            createButton.backgroundColor = .ypBlackDay
             createButton.setTitleColor(.ypWhiteDay, for: .normal)
             createButton.isEnabled = false
         }
