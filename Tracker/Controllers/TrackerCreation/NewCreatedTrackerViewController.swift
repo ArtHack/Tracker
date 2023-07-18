@@ -10,8 +10,7 @@ class NewCreatedTrackerViewController: UIViewController {
     var newCreatedTrackerType: TrackerType?
     var tableViewHeight: CGFloat?
     weak var delegate: AddNewTrackerCategoryDelegate?
-    var trackerText = ""
-    private var timetable: [Weekdays] = []
+    var trackerTitle = ""
     private var currentCategory: String? = "Category"
     var currrentSchedule: [Weekdays] = []
     
@@ -178,7 +177,7 @@ class NewCreatedTrackerViewController: UIViewController {
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.setTitle("Отменить", for: .normal)
-        button.setTitleColor(.ypBlackDay, for: .normal)
+        button.setTitleColor(.ypRed, for: .normal)
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.ypRed.cgColor
         button.clipsToBounds = true
@@ -273,7 +272,7 @@ class NewCreatedTrackerViewController: UIViewController {
     
     @objc private func createButtonTapped() {
         dismiss(animated: true) {
-            self.delegate?.addNewTrackerCategory(TrackerCategory(title: "CAtegory", trackers: [Tracker(id: UUID(), title: self.trackerText, color: .section1, emoji: "✅", timetable: self.timetable)]))
+            self.delegate?.addNewTrackerCategory(TrackerCategory(title: "CAtegory", trackers: [Tracker(id: UUID(), title: "Hello", color: .section1, emoji: "✅", schedule: self.currrentSchedule)]))
         }
     }
     
@@ -361,11 +360,6 @@ extension NewCreatedTrackerViewController: UITableViewDataSource {
 //MARK: - UITextFieldDelegate
 
 extension NewCreatedTrackerViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        trackerText = textField.text ?? ""
-        textField.resignFirstResponder()
-        return true
-    }
     
     func textField(
         _ textField: UITextField,
@@ -377,7 +371,7 @@ extension NewCreatedTrackerViewController: UITextFieldDelegate {
         }
         switch newCreatedTrackerType {
         case .habitTracker:
-            if timetable.isEmpty == false {
+            if currrentSchedule.isEmpty == false {
                 createButtonIsEnable()
                 return true
             }
@@ -397,6 +391,12 @@ extension NewCreatedTrackerViewController: UITextFieldDelegate {
             createButton.setTitleColor(.ypWhiteDay, for: .normal)
             createButton.isEnabled = false
         }
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        trackerTitle = textField.text ?? ""
+        
+        return true
     }
 }
 

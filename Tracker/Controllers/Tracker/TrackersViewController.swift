@@ -5,11 +5,14 @@ class TrackersViewController: UIViewController {
     
     var dateManager = DataManager.shared
     
+    let nctvs = NewCreatedTrackerViewController()
+    
     private var categories: [TrackerCategory] = []
     private var visibleCategories: [TrackerCategory] = []
-    var currentDate = Date()
+    var currentDate: Date?
     private var completedTrackers: Set<TrackerRecord> = []
     private var searchText = ""
+    private var tmpDate: TrackerCategory?
     
     private lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
@@ -151,7 +154,7 @@ class TrackersViewController: UIViewController {
     }
     
     func filterCategoryByDate(category: TrackerCategory) -> TrackerCategory {
-        let tracker = category.trackers.filter( {($0.title.contains(searchText) || searchText.isEmpty) && ($0.timetable.contains(where: {$0.dayIndex == currentDate.dayIndex() }))})
+        let tracker = category.trackers.filter( {($0.title.contains(searchText) || searchText.isEmpty) && ($0.schedule.contains(where: {$0.dayIndex == currentDate?.dayIndex() }))})
         let filterCategory = TrackerCategory(title: category.title, trackers: tracker)
         return filterCategory
     }
@@ -276,14 +279,15 @@ extension TrackersViewController: NewCreatedTrackerTypeDelegate {
     func addNewTrackerCategory(_ category: TrackerCategory) {
         dismiss(animated: true)
         var trackerCategory = category
-        if trackerCategory.trackers[0].timetable.isEmpty {
-            guard let numberDay = currentDate.dayIndex() else { return }
+        currentDate = datePicker.date
+        if trackerCategory.trackers[0].schedule.isEmpty {
+            guard let numberDay = currentDate?.dayIndex() else { return }
             var currentDay = numberDay
             if numberDay == 1 {
                 currentDay = 8
             }
             let newSchedule = Weekdays.allCases[currentDay - 2]
-            trackerCategory.trackers[0].timetable.append(newSchedule)
+            trackerCategory.trackers[0].schedule.append(newSchedule)
         }
         
         if categories.contains(where: { $0.title == trackerCategory.title}) {
@@ -306,10 +310,11 @@ extension TrackersViewController: TrackerCellDelegate {
         let indexPath: IndexPath = trackerCollectionView.indexPath(for: cell) ?? IndexPath()
         let id = visibleCategories[indexPath.section].trackers[indexPath.row].id
         var daysCount = completedTrackers.filter { $0.id == id }.count
-        if !completedTrackers.contains(where: { $0.id == id && $0.date == currentDate}) {
-            completedTrackers.insert(TrackerRecord(id: id, date: currentDate ))
-            daysCount += 1
-            cell.configRecord(completedDays: daysCount, isCompletedToday: true)
+        guard let currentDate = currentDate else { return }
+            if !completedTrackers.contains(where: { $0.id == id && $0.date == currentDate}) {
+                completedTrackers.insert(TrackerRecord(id: id, date: currentDate ))
+                daysCount += 1
+                cell.configRecord(completedDays: daysCount, isCompletedToday: true)
         } else {
             completedTrackers.remove(TrackerRecord(id: id, date: currentDate ))
             daysCount -= 1
