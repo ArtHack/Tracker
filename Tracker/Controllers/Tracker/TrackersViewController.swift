@@ -287,7 +287,12 @@ extension TrackersViewController: NewCreatedTrackerTypeDelegate {
                 currentDay = 8
             }
             let newSchedule = Weekdays.allCases[currentDay - 2]
-            trackerCategory.trackers[0].schedule.append(newSchedule)
+            let oldTracker = trackerCategory.trackers[0]
+            let updateTracker = Tracker(id: oldTracker.id, title: oldTracker.title, color: oldTracker.color, emoji: oldTracker.emoji, schedule: oldTracker.schedule + [newSchedule])
+            var updatedTrackers = trackerCategory.trackers
+            updatedTrackers[0] = updateTracker
+            let updatedCategory = TrackerCategory(title: trackerCategory.title, trackers: updatedTrackers)
+            trackerCategory = updatedCategory
         }
         
         if categories.contains(where: { $0.title == trackerCategory.title}) {
