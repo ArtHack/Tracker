@@ -84,7 +84,6 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
             readyButton.backgroundColor = .ypBlackDay
         } else {
             readyButton.isEnabled = false
-            readyButton.backgroundColor = .ypGray
         }
     }
     

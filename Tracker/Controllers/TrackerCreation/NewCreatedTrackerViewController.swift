@@ -402,7 +402,7 @@ extension NewCreatedTrackerViewController: UITextFieldDelegate {
 
 extension NewCreatedTrackerViewController: ScheduleViewControllerDelegate {
     func addNewSchedule(_ newSchedule: [Weekdays]) {
-        currrentSchedule = newSchedule
+//        currrentSchedule = newSchedule
         createButtonIsEnable()
     }
 }
