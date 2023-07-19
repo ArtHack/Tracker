@@ -5,15 +5,6 @@ class TrackersViewController: UIViewController {
     
     var dateManager = DataManager.shared
     
-    let nctvs = NewCreatedTrackerViewController()
-    
-    private var categories: [TrackerCategory] = []
-    private var visibleCategories: [TrackerCategory] = []
-    var currentDate: Date?
-    private var completedTrackers: Set<TrackerRecord> = []
-    private var searchText = ""
-    private var tmpDate: TrackerCategory?
-    
     private lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .compact
@@ -50,18 +41,27 @@ class TrackersViewController: UIViewController {
     
     private lazy var placeholderView: UIImageView = {
         let imageView = UIImageView()
-//        imageView.image = UIImage(named: "SearchError")
         return imageView
     }()
     
     private lazy var placeholderLabel: UILabel = {
         let label = UILabel()
-//        label.text = "Ничего не найдено"
         label.font = .ysDisplayMedium(size: 12)
         label.textColor = .ypBlackDay
         label.textAlignment = .center
         return label
     }()
+    
+    
+        
+    private var categories: [TrackerCategory] = []
+    private var visibleCategories: [TrackerCategory] = []
+    private var currentDate: Date?
+    private var completedTrackers: Set<TrackerRecord> = []
+    private var searchText = ""
+    private var tmpDate: TrackerCategory?
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,9 +124,6 @@ class TrackersViewController: UIViewController {
     
     @objc private func dateChanged() {
         currentDate = datePicker.date
-//        placeholderView.image = UIImage(named: "Что будем отслеживать?")
-//        placeholderLabel.text = "Что будем отслеживать?"
-//        self.dismiss(animated: true)
         reloadVisibleCategories()
   
     }

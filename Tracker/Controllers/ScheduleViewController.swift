@@ -99,7 +99,8 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func readyButtonTaped() {
-        dismiss(animated: true) {
+        dismiss(animated: true) { [weak self] in
+            guard let self = self else { return }
             self.delegate?.addNewSchedule(self.switchedDays)
         }
     }
