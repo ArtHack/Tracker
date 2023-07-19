@@ -20,5 +20,25 @@ enum Weekdays: String, CaseIterable {
         case .sunday: return 1
         }
     }
+    
+    var shortLabel: String {
+        switch self {
+        case .sunday:
+            return "Вс"
+        case .monday:
+            return "Пн"
+        case .tuesday:
+            return "Вт"
+        case .wednesday:
+            return "Ср"
+        case .thursday:
+            return "Чт"
+        case .friday:
+            return "Пт"
+        case .saturday:
+            return "Сб"
+        }
+    }
+
 }
 

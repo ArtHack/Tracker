@@ -21,6 +21,7 @@ class TrackersViewController: UIViewController {
         datePicker.locale = Locale(identifier: "ru_RU")
         datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
         datePicker.calendar.firstWeekday = 2
+        datePicker.maximumDate = Date()
         return datePicker
     }()
     
@@ -49,13 +50,13 @@ class TrackersViewController: UIViewController {
     
     private lazy var placeholderView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "SearchError")
+//        imageView.image = UIImage(named: "SearchError")
         return imageView
     }()
     
     private lazy var placeholderLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ничего не найдено"
+//        label.text = "Ничего не найдено"
         label.font = .ysDisplayMedium(size: 12)
         label.textColor = .ypBlackDay
         label.textAlignment = .center
@@ -123,8 +124,11 @@ class TrackersViewController: UIViewController {
     
     @objc private func dateChanged() {
         currentDate = datePicker.date
+//        placeholderView.image = UIImage(named: "Что будем отслеживать?")
+//        placeholderLabel.text = "Что будем отслеживать?"
 //        self.dismiss(animated: true)
         reloadVisibleCategories()
+  
     }
 
     @objc private func addTracker() {

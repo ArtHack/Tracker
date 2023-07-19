@@ -11,7 +11,7 @@ class NewCreatedTrackerViewController: UIViewController {
     var tableViewHeight: CGFloat?
     weak var delegate: AddNewTrackerCategoryDelegate?
     var trackerTitle = ""
-    private var currentCategory: String? = "Category"
+    private var currentCategory: String? = "Новая категория"
     var currrentSchedule: [Weekdays] = []
     
     private enum Section: Int, CaseIterable {
@@ -338,13 +338,16 @@ extension NewCreatedTrackerViewController: UITableViewDataSource {
         cell.accessoryType = .disclosureIndicator
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
+        let days = currrentSchedule.map { $0.shortLabel }
+        let daysString = days.joined(separator: ", ")
         
         switch indexPath.row {
         case 0:
             cell.textLabel?.text = "Категория"
+            cell.detailTextLabel?.text = currentCategory
         case 1:
             cell.textLabel?.text = "Расписание"
-
+            cell.detailTextLabel?.text = daysString
         default:
             fatalError("Unknown row")
         }
@@ -402,7 +405,8 @@ extension NewCreatedTrackerViewController: UITextFieldDelegate {
 
 extension NewCreatedTrackerViewController: ScheduleViewControllerDelegate {
     func addNewSchedule(_ newSchedule: [Weekdays]) {
-//        currrentSchedule = newSchedule
+        currrentSchedule = newSchedule
+        tableView.reloadData()
         createButtonIsEnable()
     }
 }
