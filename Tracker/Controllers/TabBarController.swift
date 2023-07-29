@@ -13,19 +13,16 @@ class TabBarController: UITabBarController {
         generateVC(
             viewController: TrackersViewController(),
             title: "Tрекеры",
-            image: UIImage(named: "record.circle.fill"
-                          )),
+            image: UIImage(systemName: "record.circle.fill")),
         generateVC(
             viewController: StatisticViewController(),
             title: "Статистика",
-            image: UIImage(named: "hare.fill"
-                          ))
+            image: UIImage(systemName: "hare.fill"))
         ]
     }
 
-    private func generateVC(viewController: UIViewController,
-                            title: String,
-                            image: UIImage?
+    private func generateVC(
+        viewController: UIViewController, title: String,  image: UIImage?
     ) -> UIViewController {
         viewController.tabBarItem.title = title
         viewController.tabBarItem.image = image

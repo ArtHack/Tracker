@@ -12,19 +12,15 @@ class NewCreatedTrackerTypeViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Cоздание трекера"
-        label.font = .ysDisplayMedium(size: 16)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var habitButton: UIButton = {
-        let button = UIButton.systemButton(
-            with: UIImage(),
-            target: self ,
-            action: #selector(didTapHabitButton))
-        button.setTitle("Привычка",
-                        for: .normal)
+        let button = UIButton.systemButton(with: UIImage(), target: self ,action: #selector(didTapHabitButton))
+        button.setTitle("Привычка", for: .normal)
         button.layer.cornerRadius = 16
         button.backgroundColor = .black
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -32,10 +28,7 @@ class NewCreatedTrackerTypeViewController: UIViewController {
     }()
     
     private lazy var irregularEvent: UIButton = {
-        let button = UIButton.systemButton(
-            with: UIImage(),
-            target: self ,
-            action: #selector(didTapIrregularEventButton))
+        let button = UIButton.systemButton(with: UIImage(),target:self,action:#selector(didTapIrregularEventButton))
         button.setTitle("Нерегулярное событие",
                         for: .normal)
         button.layer.cornerRadius = 16
@@ -70,17 +63,17 @@ class NewCreatedTrackerTypeViewController: UIViewController {
     }
     
     @objc func didTapHabitButton () {
-        let newCreatedTrackerVC = NewCreatedTrackerViewController()
+        let newCreatedTrackerVC = HabitOrIrregularEventViewController()
         newCreatedTrackerVC.newCreatedTrackerType = .habitTracker
         newCreatedTrackerVC.delegate = self
         present(newCreatedTrackerVC, animated: true)
     }
     
     @objc func didTapIrregularEventButton() {
-        let newCreatedTrackerVC = NewCreatedTrackerViewController()
-        newCreatedTrackerVC.newCreatedTrackerType = .irregularEvent
-        newCreatedTrackerVC.delegate = self
-        present(newCreatedTrackerVC, animated: true)
+        let habitOrIrregularEventVC = HabitOrIrregularEventViewController()
+        habitOrIrregularEventVC.newCreatedTrackerType = .irregularEvent
+        habitOrIrregularEventVC.delegate = self
+        present(habitOrIrregularEventVC, animated: true)
     }
     
     func addSubviews() {

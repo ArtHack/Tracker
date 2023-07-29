@@ -5,14 +5,17 @@ protocol AddNewTrackerCategoryDelegate: AnyObject {
     func addNewTrackerCategory(_ category: TrackerCategory)
 }
 
-class NewCreatedTrackerViewController: UIViewController {
+class HabitOrIrregularEventViewController: UIViewController {
     
     var newCreatedTrackerType: TrackerType?
     var tableViewHeight: CGFloat?
-    weak var delegate: AddNewTrackerCategoryDelegate?
     var trackerTitle = ""
-    private var currentCategory: String? = "Новая категория"
     var currrentSchedule: [Weekdays] = []
+    weak var delegate: AddNewTrackerCategoryDelegate?
+
+    private var currentCategory: String? = "Новая категория"
+    private var emoji = ""
+    private var color: UIColor = .clear
     
     private enum Section: Int, CaseIterable {
         case emojis
@@ -30,6 +33,11 @@ class NewCreatedTrackerViewController: UIViewController {
          UIColor.section7, UIColor.section8, UIColor.section9, UIColor.section10, UIColor.section11, UIColor.section12,
          UIColor.section13, UIColor.section14, UIColor.section15, UIColor.section16, UIColor.section17, UIColor.section18
     ]
+    
+    private lazy var scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        return scroll
+    }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -58,7 +66,6 @@ class NewCreatedTrackerViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "newCreatedTrackerCell")
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .ypBackgroundNight
@@ -68,7 +75,7 @@ class NewCreatedTrackerViewController: UIViewController {
         return tableView
     }()
     
-    private let newCreatedTrackerCollectionView: UICollectionView = {
+    private let emojiOrCollorCollectionView: UICollectionView = {
         
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) ->
             NSCollectionLayoutSection? in
@@ -92,26 +99,24 @@ class NewCreatedTrackerViewController: UIViewController {
             
             let groupSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(0.1)
-            )
+                heightDimension: .fractionalHeight(0.1)            )
             
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                            subitem: item,
                                                            count: 6)
-            group.interItemSpacing = .fixed(12)
+            group.interItemSpacing = .fixed(22)
             
             let section = NSCollectionLayoutSection(group: group)
-            section.interGroupSpacing = 17
+            section.interGroupSpacing = 15
             section.boundarySupplementaryItems = [headerElement]
-            
             return section
         }
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(NewCreatedTrackerCollectionViewCell.self, forCellWithReuseIdentifier: NewCreatedTrackerCollectionViewCell.reuseIdentifier)
-        collectionView.register(NewCreatedTrackerHeaderForCollectionView.self,
+        collectionView.register(HabitOrIrregularEventCollectionViewCell.self, forCellWithReuseIdentifier: HabitOrIrregularEventCollectionViewCell.reuseIdentifier)
+        collectionView.register(HabitOrIrregularEventHeaderForCollectionView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: NewCreatedTrackerHeaderForCollectionView.reuseIdentifier)
+                                withReuseIdentifier: HabitOrIrregularEventHeaderForCollectionView.reuseIdentifier)
         return collectionView
     }()
     
@@ -119,27 +124,35 @@ class NewCreatedTrackerViewController: UIViewController {
         
         private func setupDataSource() {
             dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>(
-                collectionView: newCreatedTrackerCollectionView
+                collectionView: emojiOrCollorCollectionView
             ) {
                 (collectionView: UICollectionView, indexPath: IndexPath, item: AnyHashable) -> UICollectionViewCell? in
                 let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: NewCreatedTrackerCollectionViewCell.reuseIdentifier,
+                    withReuseIdentifier: HabitOrIrregularEventCollectionViewCell.reuseIdentifier,
                     for: indexPath
-                ) as! NewCreatedTrackerCollectionViewCell
+                ) as! HabitOrIrregularEventCollectionViewCell
+                
+                cell.backgroundColor = .clear
+                cell.layer.cornerRadius = 8
+                cell.layer.masksToBounds = true
+                cell.emojiOrColorLabel.isHidden = true
                 
                 switch indexPath.section {
                 case Section.emojis.rawValue:
                     if let emoji = item as? String {
-                        cell.emojiLabel.text = emoji
-                        cell.emojiLabel.isHidden = false
-                        cell.backgroundColor = .clear
+                        cell.emojiOrColorLabel.text = emoji
+                        cell.emojiOrColorLabel.isHidden = false
                     }
                 case Section.colors.rawValue:
                     if let color = item as? UIColor {
                         cell.backgroundColor = color
-                        cell.layer.cornerRadius = 16
+                        cell.layer.cornerRadius = 8
                         cell.layer.masksToBounds = true
-                        cell.emojiLabel.isHidden = true
+                        cell.emojiOrColorLabel.isHidden = true
+                        if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first, selectedIndexPath == indexPath {
+                            cell.layer.borderWidth = 4
+                            cell.layer.backgroundColor = color.cgColor
+                        }
                     }
                 default:
                     break
@@ -153,8 +166,8 @@ class NewCreatedTrackerViewController: UIViewController {
             }
             let view = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
-                withReuseIdentifier: NewCreatedTrackerHeaderForCollectionView.reuseIdentifier,
-                for: indexPath) as? NewCreatedTrackerHeaderForCollectionView
+                withReuseIdentifier: HabitOrIrregularEventHeaderForCollectionView.reuseIdentifier,
+                for: indexPath) as? HabitOrIrregularEventHeaderForCollectionView
             switch indexPath.section {
             case 0:
                 view?.titleLabel.text = "Emoji"
@@ -163,9 +176,10 @@ class NewCreatedTrackerViewController: UIViewController {
             default:
                 fatalError("Unknown section")
             }
-            view?.titleLabel.font = .ysDisplayBold(size: 19)
             return view
         }
+            emojiOrCollorCollectionView.allowsMultipleSelection = false
+            emojiOrCollorCollectionView.delegate = self
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
             snapshot.appendSections([.emojis, .colors])
@@ -186,7 +200,6 @@ class NewCreatedTrackerViewController: UIViewController {
         return button
     } ()
     
-    
     private lazy var createButton: UIButton = {
         let button = UIButton()
         button.setTitle("Создать", for: .normal)
@@ -204,7 +217,7 @@ class NewCreatedTrackerViewController: UIViewController {
         
         view.backgroundColor = .white
         
-//        setupDataSource()
+        setupDataSource()
         setupViews()
         setupConstraints()
         
@@ -212,11 +225,12 @@ class NewCreatedTrackerViewController: UIViewController {
     
     private func setupViews() {
         view.addSubview(titleLabel)
-        view.addSubview(searchTextField)
-        view.addSubview(tableView)
-        view.addSubview(newCreatedTrackerCollectionView)
-        view.addSubview(cancelButton)
-        view.addSubview(createButton)
+        view.addSubview(scrollView)
+        
+        let subViews = [searchTextField, tableView, emojiOrCollorCollectionView, cancelButton, createButton ]
+        subViews.forEach {
+            scrollView.addSubview($0)
+        }
     }
     
     func setupConstraints() {
@@ -225,6 +239,7 @@ class NewCreatedTrackerViewController: UIViewController {
             tableViewHeight = 150
         case .irregularEvent:
             tableViewHeight = 75
+            tableView.separatorColor = .clear
         case .none: break
         }
         
@@ -233,10 +248,16 @@ class NewCreatedTrackerViewController: UIViewController {
             make.bottom.equalTo(view.snp.top).offset(40)
         }
         
-        searchTextField.snp.makeConstraints { make in
+        scrollView.snp.makeConstraints { make in
+            make.width.equalTo(view.snp.width)
             make.top.equalTo(titleLabel.snp.bottom).offset(24)
-            make.leading.equalTo(view.snp.leading).offset(16)
-            make.trailing.equalTo(view.snp.trailing).offset(-16)
+            make.bottom.equalTo(view.snp.bottom)
+        }
+        
+        searchTextField.snp.makeConstraints { make in
+            make.top.equalTo(scrollView.snp.top)
+            make.leading.equalTo(scrollView.snp.leading).offset(16)
+            make.trailing.equalTo(scrollView.snp.trailing).offset(-16)
             make.height.equalTo(75)
             make.width.equalTo(view.snp.width).offset(-32)
         }
@@ -248,31 +269,32 @@ class NewCreatedTrackerViewController: UIViewController {
             make.height.equalTo(tableViewHeight ?? CGFloat(0))
         }
         
-        cancelButton.snp.makeConstraints { make in
-            make.leading.equalTo(view.snp.leading).offset(16)
-            make.trailing.equalTo(createButton.snp.leading).offset(-8)
-            make.height.equalTo(50)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-        }
-        
-        createButton.snp.makeConstraints { make in
-            make.height.equalTo(cancelButton.snp.height)
-            make.trailing.equalTo(view.snp.trailing).offset(-16)
-            make.centerY.equalTo(cancelButton.snp.centerY)
-            make.width.equalTo(cancelButton.snp.width)
-        }
-        
-        newCreatedTrackerCollectionView.snp.makeConstraints { make in
+        emojiOrCollorCollectionView.snp.makeConstraints { make in
             make.top.equalTo(tableView.snp.bottom).offset(24)
-            make.leading.equalTo(tableView.snp.leading)
-            make.trailing.equalTo(tableView.snp.trailing)
-            make.bottom.equalTo(cancelButton.snp.top)
+            make.leading.equalTo(scrollView.snp.leading).offset(16)
+            make.trailing.equalTo(scrollView.snp.trailing).offset(-16)
+            make.height.equalTo(404)
+        }
+        
+        cancelButton.snp.makeConstraints { make in
+            make.leading.equalTo(scrollView.snp.leading).offset(20)
+            make.trailing.equalTo(scrollView.snp.centerX).offset(-4)
+            make.bottom.equalTo(scrollView.snp.bottom).offset(-34)
+            make.height.equalTo(60)
+        }
+
+        createButton.snp.makeConstraints { make in
+            make.top.equalTo(emojiOrCollorCollectionView.snp.bottom)
+            make.trailing.equalTo(scrollView.snp.trailing).offset(-20)
+            make.leading.equalTo(scrollView.snp.centerX).offset(4)
+            make.bottom.equalTo(scrollView.snp.bottom).offset(-34)
+            make.height.equalTo(cancelButton.snp.height)
         }
     }
     
     @objc private func createButtonTapped() {
         dismiss(animated: true) {
-            self.delegate?.addNewTrackerCategory(TrackerCategory(title: "CAtegory", trackers: [Tracker(id: UUID(), title: "Hello", color: .section1, emoji: "✅", schedule: self.currrentSchedule)]))
+            self.delegate?.addNewTrackerCategory(TrackerCategory(title: "Категория", trackers: [Tracker(id: UUID(), title: self.trackerTitle, color: self.color, emoji: self.emoji, schedule: self.currrentSchedule)]))
         }
     }
     
@@ -293,7 +315,7 @@ class NewCreatedTrackerViewController: UIViewController {
 
 //MARK: - UITableViewDelegate
 
-extension NewCreatedTrackerViewController: UITableViewDelegate {
+extension HabitOrIrregularEventViewController: UITableViewDelegate {
     func tableView(
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
@@ -313,7 +335,7 @@ extension NewCreatedTrackerViewController: UITableViewDelegate {
 
 //MARK: - UITableViewDataSource
 
-extension NewCreatedTrackerViewController: UITableViewDataSource {
+extension HabitOrIrregularEventViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int
     ) -> Int {
@@ -357,12 +379,11 @@ extension NewCreatedTrackerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
-    
 }
 
 //MARK: - UITextFieldDelegate
 
-extension NewCreatedTrackerViewController: UITextFieldDelegate {
+extension HabitOrIrregularEventViewController: UITextFieldDelegate {
     
     func textField(
         _ textField: UITextField,
@@ -376,10 +397,12 @@ extension NewCreatedTrackerViewController: UITextFieldDelegate {
         case .habitTracker:
             if currrentSchedule.isEmpty == false {
                 createButtonIsEnable()
+                trackerTitle = textField.text ?? ""
                 return true
             }
         case .irregularEvent:
             createButtonIsEnable()
+            trackerTitle = textField.text ?? ""
             return true
         case .none:
             return true
@@ -395,18 +418,47 @@ extension NewCreatedTrackerViewController: UITextFieldDelegate {
             createButton.isEnabled = false
         }
     }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        trackerTitle = textField.text ?? ""
-        
-        return true
-    }
 }
 
-extension NewCreatedTrackerViewController: ScheduleViewControllerDelegate {
+extension HabitOrIrregularEventViewController: ScheduleViewControllerDelegate {
     func addNewSchedule(_ newSchedule: [Weekdays]) {
         currrentSchedule = newSchedule
         tableView.reloadData()
         createButtonIsEnable()
+    }
+}
+
+//MARK: - CollectionViewDelegate
+
+extension HabitOrIrregularEventViewController: UICollectionViewDelegate {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        if let cell = emojiOrCollorCollectionView.cellForItem(at: indexPath) as? HabitOrIrregularEventCollectionViewCell {
+            switch indexPath.section {
+            case 0:
+                for item in 0..<emojiOrCollorCollectionView.numberOfItems(inSection: 0) {
+                    guard let cell = emojiOrCollorCollectionView.cellForItem(at: IndexPath(row: item, section: 0))
+                    else { return }
+                    cell.backgroundColor = .clear
+                }
+                cell.backgroundColor = .ypGray
+                emoji = cell.emojiOrColorLabel.text ?? "ramambahara"
+                
+            case 1:
+                for item in 0..<emojiOrCollorCollectionView.numberOfItems(inSection: 1) {
+                    guard let cell = emojiOrCollorCollectionView.cellForItem(at: IndexPath(row: item, section: 1)) else { return }
+                    cell.layer.borderWidth = 0
+                }
+                cell.layer.borderColor = cell.contentView.backgroundColor?.withAlphaComponent(0.3).cgColor
+                cell.layer.borderWidth = 3
+                
+                color = cell.backgroundColor ?? .red
+                
+            default:
+                break
+            }
+        }
     }
 }

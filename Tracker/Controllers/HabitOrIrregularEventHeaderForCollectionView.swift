@@ -1,13 +1,13 @@
 import UIKit
 import SnapKit
 
-class NewCreatedTrackerHeaderForCollectionView: UICollectionReusableView {
+class HabitOrIrregularEventHeaderForCollectionView: UICollectionReusableView {
     
     static let reuseIdentifier = "HeaderView"
 
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .ysDisplayMedium(size: 19)
+        label.font = UIFont.systemFont(ofSize: 19, weight: .bold)
         return label
     }()
 
@@ -34,7 +34,7 @@ class NewCreatedTrackerHeaderForCollectionView: UICollectionReusableView {
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.equalToSuperview().offset(28)
+            $0.leading.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
     }
