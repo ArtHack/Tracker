@@ -1,67 +1,86 @@
 import Foundation
 
 enum Weekdays: String, Comparable, CaseIterable {
-    case Понедельник
-    case Вторник
-    case Среда
-    case Четверг
-    case Пятница
-    case Суббота
-    case Воскресенье
+    case monday
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+    case suturday
+    case sunday
+    
+    var cyrillic: String {
+        switch self {
+        case .monday:
+            return "Понедельник"
+        case .tuesday:
+            return "Вторник"
+        case .wednesday:
+            return "Среда"
+        case .thursday:
+            return "Четверг"
+        case .friday:
+            return "Пятница"
+        case .suturday:
+            return " Суббота"
+        case .sunday:
+            return "Воскресенье"
+        }
+    }
     
     var dayNumberOfWeek: Int {
         switch self {
-        case .Понедельник:
+        case .monday:
             return 2
-        case .Вторник:
+        case .tuesday:
             return 3
-        case .Среда:
+        case .wednesday:
             return 4
-        case .Четверг:
+        case .thursday:
             return 5
-        case .Пятница:
+        case .friday:
             return 6
-        case .Суббота:
+        case .suturday:
             return 7
-        case .Воскресенье:
+        case .sunday:
             return 1
         }
     }
     
     var shortName: String {
         switch self {
-        case .Понедельник:
+        case .monday:
             return "Пн"
-        case .Вторник:
+        case .tuesday:
             return "Вт"
-        case .Среда:
+        case .wednesday:
             return "Ср"
-        case .Четверг:
+        case .thursday:
             return "Чт"
-        case .Пятница:
+        case .friday:
             return "Пт"
-        case .Суббота:
+        case .suturday:
             return "Сб"
-        case .Воскресенье:
+        case .sunday:
             return "Вс"
         }
     }
     
     private var sortOrder: Int {
         switch self {
-        case .Понедельник:
+        case .monday:
             return 0
-        case .Вторник:
+        case .tuesday:
             return 1
-        case .Среда:
+        case .wednesday:
             return 2
-        case .Четверг:
+        case .thursday:
             return 3
-        case .Пятница:
+        case .friday:
             return 4
-        case .Суббота:
+        case .suturday:
             return 5
-        case .Воскресенье:
+        case .sunday:
             return 6
         }
     }

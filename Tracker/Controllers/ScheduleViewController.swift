@@ -121,7 +121,7 @@ extension ScheduleViewController: UITableViewDataSource {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
         cell.selectionStyle = .none
         cell.textLabel?.font = UIFont.systemFont(ofSize: 17)
-        cell.textLabel?.text = Weekdays.allCases[indexPath.row].rawValue
+        cell.textLabel?.text = Weekdays.allCases[indexPath.row].cyrillic
         cell.backgroundColor = .ypBackgroundDay
         
         let daySwitch = UISwitch()

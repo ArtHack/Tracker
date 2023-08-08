@@ -23,17 +23,18 @@
 		CA2BC49529F6ABF90001749B /* TrackersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2BC49429F6ABF90001749B /* TrackersViewController.swift */; };
 		CA2BC49A29F6ABFB0001749B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA2BC49929F6ABFB0001749B /* Assets.xcassets */; };
 		CA2BC49D29F6ABFB0001749B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA2BC49B29F6ABFB0001749B /* LaunchScreen.storyboard */; };
+		CA636AC62A82730D00F8CD4A /* GeometricParms.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA636AC52A82730D00F8CD4A /* GeometricParms.swift */; };
 		CA76900B2A5EB32A00C27D69 /* Date+Extenson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA76900A2A5EB32A00C27D69 /* Date+Extenson.swift */; };
 		CA77D3A62A7D7195001BAFE6 /* TackerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA77D3A52A7D7195001BAFE6 /* TackerStore.swift */; };
 		CA77D3A82A7D71B3001BAFE6 /* TrackerCategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA77D3A72A7D71B2001BAFE6 /* TrackerCategoryStore.swift */; };
 		CA77D3AA2A7D7221001BAFE6 /* TrackerRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA77D3A92A7D7221001BAFE6 /* TrackerRecordStore.swift */; };
 		CA77D3B32A7E181B001BAFE6 /* StoreUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA77D3B22A7E181B001BAFE6 /* StoreUpdate.swift */; };
 		CA77D3B52A7E21BE001BAFE6 /* StoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA77D3B42A7E21BE001BAFE6 /* StoreError.swift */; };
-		CA77D3BB2A7E3E8E001BAFE6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA77D3B92A7E3E8E001BAFE6 /* Model.xcdatamodeld */; };
 		CA77D3BD2A7EA1F8001BAFE6 /* EmojiAndColorCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA77D3BC2A7EA1F8001BAFE6 /* EmojiAndColorCollection.swift */; };
 		CA81540C2A82058300304367 /* DateHalper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA81540B2A82058300304367 /* DateHalper.swift */; };
 		CA81540E2A82066D00304367 /* WeekDaysMarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA81540D2A82066D00304367 /* WeekDaysMarshalling.swift */; };
 		CA8154142A82090C00304367 /* SupplementaryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8154132A82090C00304367 /* SupplementaryHeaderView.swift */; };
+		CA81541D2A8263BC00304367 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA81541B2A8263BB00304367 /* Model.xcdatamodeld */; };
 		CA9A106429FE7CE100A8E78E /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A106329FE7CE100A8E78E /* StatisticViewController.swift */; };
 		CA9A10662A0033FD00A8E78E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A10652A0033FD00A8E78E /* TabBarController.swift */; };
 		CABB86AC2A34C2A600E398FF /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABB86AB2A34C2A600E398FF /* ScheduleViewController.swift */; };
@@ -58,17 +59,18 @@
 		CA2BC49929F6ABFB0001749B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA2BC49C29F6ABFB0001749B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA2BC49E29F6ABFB0001749B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA636AC52A82730D00F8CD4A /* GeometricParms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometricParms.swift; sourceTree = "<group>"; };
 		CA76900A2A5EB32A00C27D69 /* Date+Extenson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extenson.swift"; sourceTree = "<group>"; };
 		CA77D3A52A7D7195001BAFE6 /* TackerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TackerStore.swift; sourceTree = "<group>"; };
 		CA77D3A72A7D71B2001BAFE6 /* TrackerCategoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCategoryStore.swift; sourceTree = "<group>"; };
 		CA77D3A92A7D7221001BAFE6 /* TrackerRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecordStore.swift; sourceTree = "<group>"; };
 		CA77D3B22A7E181B001BAFE6 /* StoreUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreUpdate.swift; sourceTree = "<group>"; };
 		CA77D3B42A7E21BE001BAFE6 /* StoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreError.swift; sourceTree = "<group>"; };
-		CA77D3BA2A7E3E8E001BAFE6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		CA77D3BC2A7EA1F8001BAFE6 /* EmojiAndColorCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiAndColorCollection.swift; sourceTree = "<group>"; };
 		CA81540B2A82058300304367 /* DateHalper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHalper.swift; sourceTree = "<group>"; };
 		CA81540D2A82066D00304367 /* WeekDaysMarshalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDaysMarshalling.swift; sourceTree = "<group>"; };
 		CA8154132A82090C00304367 /* SupplementaryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryHeaderView.swift; sourceTree = "<group>"; };
+		CA81541C2A8263BB00304367 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		CA9A106329FE7CE100A8E78E /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		CA9A10652A0033FD00A8E78E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CABB86AB2A34C2A600E398FF /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
@@ -135,7 +137,6 @@
 				CA2BC49029F6ABF90001749B /* AppDelegate.swift */,
 				CA2BC49229F6ABF90001749B /* SceneDelegate.swift */,
 				CA77D3A42A7D70F0001BAFE6 /* Domain */,
-				CA77D3A22A7D6B43001BAFE6 /* CoreData */,
 				CA26E1382A1C966000775932 /* Models */,
 				CA26E1362A1C95C600775932 /* Controllers */,
 				CA1427E62A0A1D5200843B2D /* Helpers */,
@@ -143,14 +144,6 @@
 				CA2BC49E29F6ABFB0001749B /* Info.plist */,
 			);
 			path = Tracker;
-			sourceTree = "<group>";
-		};
-		CA77D3A22A7D6B43001BAFE6 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				CA77D3B92A7E3E8E001BAFE6 /* Model.xcdatamodeld */,
-			);
-			path = CoreData;
 			sourceTree = "<group>";
 		};
 		CA77D3A32A7D6B83001BAFE6 /* SupportingFiles */ = {
@@ -171,6 +164,7 @@
 				CA77D3B22A7E181B001BAFE6 /* StoreUpdate.swift */,
 				CA77D3B42A7E21BE001BAFE6 /* StoreError.swift */,
 				CA81540D2A82066D00304367 /* WeekDaysMarshalling.swift */,
+				CA81541B2A8263BB00304367 /* Model.xcdatamodeld */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -193,6 +187,7 @@
 				CA77D3BC2A7EA1F8001BAFE6 /* EmojiAndColorCollection.swift */,
 				CA26E1302A19016300775932 /* EmojiAndColorsCollectionCell.swift */,
 				CA8154132A82090C00304367 /* SupplementaryHeaderView.swift */,
+				CA636AC52A82730D00F8CD4A /* GeometricParms.swift */,
 			);
 			path = TrackerCreation;
 			sourceTree = "<group>";
@@ -276,7 +271,7 @@
 				CA2BC49529F6ABF90001749B /* TrackersViewController.swift in Sources */,
 				CA2BC49129F6ABF90001749B /* AppDelegate.swift in Sources */,
 				CA77D3B52A7E21BE001BAFE6 /* StoreError.swift in Sources */,
-				CA77D3BB2A7E3E8E001BAFE6 /* Model.xcdatamodeld in Sources */,
+				CA81541D2A8263BC00304367 /* Model.xcdatamodeld in Sources */,
 				CA1427E12A036FF800843B2D /* NewTrackerViewController.swift in Sources */,
 				CA77D3B32A7E181B001BAFE6 /* StoreUpdate.swift in Sources */,
 				CA9A106429FE7CE100A8E78E /* StatisticViewController.swift in Sources */,
@@ -301,6 +296,7 @@
 				CA2BC49329F6ABF90001749B /* SceneDelegate.swift in Sources */,
 				CA1427E82A0A1D9100843B2D /* UIColor+Extensions.swift in Sources */,
 				CA77D3BD2A7EA1F8001BAFE6 /* EmojiAndColorCollection.swift in Sources */,
+				CA636AC62A82730D00F8CD4A /* GeometricParms.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,14 +533,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		CA77D3B92A7E3E8E001BAFE6 /* Model.xcdatamodeld */ = {
+		CA81541B2A8263BB00304367 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				CA77D3BA2A7E3E8E001BAFE6 /* Model.xcdatamodel */,
+				CA81541C2A8263BB00304367 /* Model.xcdatamodel */,
 			);
-			currentVersion = CA77D3BA2A7E3E8E001BAFE6 /* Model.xcdatamodel */;
-			name = Model.xcdatamodeld;
-			path = ../../../../Documents/Trackered15/Tracker/CoreData/Model.xcdatamodeld;
+			currentVersion = CA81541C2A8263BB00304367 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -196,7 +196,8 @@ final class NewTrackerViewController: UIViewController {
     }
     
     private func buttonIsEnabled() {
-        if textField.text?.isEmpty == false && ((currentCategory?.isEmpty) != nil) {
+        guard let text = textField.text, let currentCategory else { return }
+        if !text.isEmpty && !currentCategory.isEmpty {
             saveButton.backgroundColor = .black
             saveButton.setTitleColor(.white, for: .normal)
             saveButton.isEnabled = true
@@ -220,7 +221,7 @@ extension NewTrackerViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 17)
-        cell.detailTextLabel?.textColor = .gray
+        cell.detailTextLabel?.textColor = .ypGray
         
         switch indexPath.row {
         case 0:
@@ -273,7 +274,7 @@ extension NewTrackerViewController: UITextFieldDelegate {
         switch typeOfNewTracker {
         case .habitTracker:
             trackerText = textField.text ?? ""
-            if schedule.isEmpty == false {
+            if !schedule.isEmpty {
                 buttonIsEnabled()
                 return true
             }
@@ -288,7 +289,8 @@ extension NewTrackerViewController: UITextFieldDelegate {
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        if textField.text?.isEmpty == true {
+        guard let textField = textField.text else { return }
+        if textField.isEmpty == true {
             saveButton.backgroundColor = .ypBlackDay
             saveButton.setTitleColor(.white, for: .normal)
             saveButton.isEnabled = false
