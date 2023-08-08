@@ -1,44 +1,72 @@
 import Foundation
 
-enum Weekdays: String, CaseIterable {
-    case monday = "Понедельник"
-    case tuesday = "Вторник"
-    case wednesday = "Среда"
-    case thursday = "Четверг"
-    case friday = "Пятница"
-    case saturday = "Суббота"
-    case sunday = "Воскресенье"
+enum Weekdays: String, Comparable, CaseIterable {
+    case Понедельник
+    case Вторник
+    case Среда
+    case Четверг
+    case Пятница
+    case Суббота
+    case Воскресенье
     
-    var dayIndex: Int {
+    var dayNumberOfWeek: Int {
         switch self {
-        case .monday: return 2
-        case .tuesday: return 3
-        case .wednesday: return 4
-        case .thursday: return 5
-        case .friday: return 6
-        case .saturday: return 7
-        case .sunday: return 1
+        case .Понедельник:
+            return 2
+        case .Вторник:
+            return 3
+        case .Среда:
+            return 4
+        case .Четверг:
+            return 5
+        case .Пятница:
+            return 6
+        case .Суббота:
+            return 7
+        case .Воскресенье:
+            return 1
         }
     }
     
-    var shortLabel: String {
+    var shortName: String {
         switch self {
-        case .sunday:
-            return "Вс"
-        case .monday:
+        case .Понедельник:
             return "Пн"
-        case .tuesday:
+        case .Вторник:
             return "Вт"
-        case .wednesday:
+        case .Среда:
             return "Ср"
-        case .thursday:
+        case .Четверг:
             return "Чт"
-        case .friday:
+        case .Пятница:
             return "Пт"
-        case .saturday:
+        case .Суббота:
             return "Сб"
+        case .Воскресенье:
+            return "Вс"
         }
     }
-
+    
+    private var sortOrder: Int {
+        switch self {
+        case .Понедельник:
+            return 0
+        case .Вторник:
+            return 1
+        case .Среда:
+            return 2
+        case .Четверг:
+            return 3
+        case .Пятница:
+            return 4
+        case .Суббота:
+            return 5
+        case .Воскресенье:
+            return 6
+        }
+    }
+    
+    static func < (lhs: Weekdays, rhs: Weekdays) -> Bool {
+        return lhs.sortOrder < rhs.sortOrder
+    }
 }
-

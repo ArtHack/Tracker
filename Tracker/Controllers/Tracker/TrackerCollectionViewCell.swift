@@ -1,127 +1,136 @@
 import UIKit
 import SnapKit
 
-protocol TrackerCellDelegate: AnyObject {
-    func plusButtonTaped(cell: TrackerCell)
+protocol TrackerCollectionViewCellDelegate: AnyObject {
+    func plusButtonTapped(cell: TrackerCollectionViewCell)
 }
 
-class TrackerCell: UICollectionViewCell {
-    static let identifier = "TrackerCell"
-    weak var delegate: TrackerCellDelegate?
+final class TrackerCollectionViewCell: UICollectionViewCell {
+    static let identifier = "TrackerCollectionViewCell"
+    weak var delegate: TrackerCollectionViewCellDelegate?
     
-    private lazy var cellView: UIView = {
+    private let colorView: UIView = {
         let view = UIView()
-        view.backgroundColor = .section1
-        view.layer.cornerRadius = 12
+        view.layer.cornerRadius = 16
+        view.backgroundColor = .ypRed
         return view
     }()
     
-    private lazy var emojiLabel: UILabel = {
+    private let numberOfDayLabel: UILabel = {
         let label = UILabel()
-        label.text = ""
-        label.font = UIFont.systemFont(ofSize: 24)
-        label.backgroundColor = .ypBackgroundNight
+        label.textColor = .ypBlackDay
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.text = "0 Дней"
+        return label
+    }()
+    
+    private let plusButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("+", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 34 / 2
+        button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
+        button.backgroundColor = .ypRed
+        return button
+    }()
+    
+    private let emojiLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.backgroundColor = .ypBackgroundDay
+        label.textAlignment = .center
         label.layer.cornerRadius = 12
         label.clipsToBounds = true
         return label
     }()
     
-    private lazy var titleLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .ypWhiteDay
-        label.text = ""
-        label.font = .ysDisplayMedium(size: 12)
+        label.textColor = .white
+        label.numberOfLines = 2
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.text = "Поливать растения"
         return label
-    }()
-    
-    private lazy var daysCounterLabel: UILabel = {
-        let label = UILabel()
-        label.font = .ysDisplayMedium(size: 12)
-        label.textColor = .ypBlackDay
-        label.text = ""
-        return label
-    }()
-    
-    private lazy var plusButton: UIButton = {
-        let button = UIButton()
-        button.setTitleColor(.ypWhiteDay, for: .normal)
-        button.layer.cornerRadius = 16
-        button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
-        return button
     }()
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupViews()
-        setupConstraints()
+        addSubviews()
+        addViewConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func plusButtonTapped() {
-        delegate?.plusButtonTaped(cell: self)
-    }
-    
-    func setupViews() {
-        contentView.addSubview(cellView)
-        cellView.addSubview(emojiLabel)
-        cellView.addSubview(titleLabel)
-        contentView.addSubview(plusButton)
-        contentView.addSubview(daysCounterLabel)
-
-    }
-    
-    func setupConstraints() {
-        
-        cellView.snp.makeConstraints {
-            $0.top.equalTo(contentView.snp.top)
-            $0.leading.equalTo(contentView.snp.leading)
-            $0.trailing.equalTo(contentView.snp.trailing)
-            $0.bottom.equalTo(contentView.snp.bottom).offset(-42)
-        }
-        
-        plusButton.snp.makeConstraints {
-            $0.top.equalTo(cellView.snp.bottom).offset(16)
-            $0.trailing.equalTo(contentView.snp.trailing).offset(-12)
-            $0.width.equalTo(34)
-            $0.height.equalTo(34)
-        }
-        
-        daysCounterLabel.snp.makeConstraints {
-            $0.centerY.equalTo(plusButton.snp.centerY)
-            $0.leading.equalTo(contentView.snp.leading).offset(12)
-        }
-        
-        emojiLabel.snp.makeConstraints {
-            $0.top.equalTo(cellView).offset(12)
-            $0.leading.equalTo(cellView).offset(12)
-        }
-
-        titleLabel.snp.makeConstraints {
-            $0.leading.equalTo(cellView).offset(12)
-            $0.bottom.equalTo(cellView).offset(-12)
-            $0.trailing.equalTo(cellView).offset(-12)
-        }
-    }
-
-    func configure(tracker: Tracker) {
-        titleLabel.text = tracker.title
+    func configCell(tracker: Tracker) {
+        nameLabel.text = tracker.title
         emojiLabel.text = tracker.emoji
-        cellView.backgroundColor = tracker.color
+        colorView.backgroundColor = tracker.color
         plusButton.backgroundColor = tracker.color
     }
     
-    func configRecord(completedDays: Int, isCompletedToday: Bool) {
-        let title = isCompletedToday ? "✓" : "+"
+    func configRecord(countDays: Int, isDoneToday: Bool) {
+        let title = isDoneToday ? "✓" : "+"
         plusButton.setTitle(title, for: .normal)
         
-        let opacity: Float = isCompletedToday ? 0.3 : 1
+        let opacity: Float = isDoneToday ? 0.3 : 1
         plusButton.layer.opacity = opacity
         
-        daysCounterLabel.text = "\(completedDays) Дней"
+        numberOfDayLabel.text = "\(countDays) Дней"
+    }
+    
+    @objc private func plusButtonTapped() {
+        delegate?.plusButtonTapped(cell: self)
+    }
+    
+    private func addSubviews() {
+        [colorView, numberOfDayLabel, plusButton].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview($0)
+        }
+        
+        [emojiLabel, nameLabel].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            colorView.addSubview($0)
+        }
+    }
+    
+    private func addViewConstraints() {
+        let space: CGFloat = 12
+
+        colorView.snp.makeConstraints { make in
+            make.top.equalTo(contentView)
+            make.leading.equalTo(contentView)
+            make.trailing.equalTo(contentView)
+            make.bottom.equalTo(contentView).offset(-42)
+        }
+
+        numberOfDayLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(plusButton)
+            make.leading.equalTo(contentView).offset(space)
+        }
+
+        plusButton.snp.makeConstraints { make in
+            make.trailing.equalTo(contentView).offset(-space)
+            make.top.equalTo(colorView.snp.bottom).offset(8)
+            make.height.equalTo(34)
+            make.width.equalTo(34)
+        }
+
+        emojiLabel.snp.makeConstraints { make in
+            make.leading.equalTo(colorView).offset(space)
+            make.top.equalTo(colorView).offset(space)
+            make.height.equalTo(24)
+            make.width.equalTo(24)
+        }
+
+        nameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(colorView).offset(space)
+            make.trailing.equalTo(colorView).offset(-space)
+            make.bottom.equalTo(colorView).offset(-space)
+        }
     }
 }

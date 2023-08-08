@@ -5,16 +5,16 @@ protocol ScheduleViewControllerDelegate: AnyObject {
     func addNewSchedule( _ newSchedule: [Weekdays])
 }
 
-class ScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ScheduleViewController: UIViewController, UITableViewDelegate {
     
     weak var delegate: ScheduleViewControllerDelegate?
     private var switchedDays: [Weekdays] = []
     
     
     private lazy var titleLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "Расписание"
-        label.font = .ysDisplayMedium(size: 16)
+        label.font = .systemFont(ofSize: 16)
         label.textColor = .ypBlackDay
         return label
     }()
@@ -33,7 +33,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         let button = UIButton(type: .system)
         button.setTitle("Готово", for: .normal)
         button.setTitleColor(.ypWhiteDay, for: .normal)
-        button.titleLabel?.font = .ysDisplayMedium(size: 16)
+        button.titleLabel?.font = .systemFont(ofSize: 16)
         button.backgroundColor = .ypGray
         button.layer.cornerRadius = 16
         button.addTarget(self, action: #selector(readyButtonTaped), for: .touchUpInside)
@@ -46,9 +46,8 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         
         setupView()
         setupConstraints()
-        
     }
-     
+    
     private func setupView() {
         view.backgroundColor = .white
         view.addSubview(tableView)
@@ -74,7 +73,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
             $0.bottom.equalTo(view.snp.bottom).offset(-50)
             $0.width.equalTo(335)
             $0.height.equalTo(60)
-        
+            
         }
     }
     
@@ -104,9 +103,10 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
             self.delegate?.addNewSchedule(self.switchedDays)
         }
     }
+}
     
-    // MARK: - Table view data source
-    
+// MARK: - UITableViewDataSource
+extension ScheduleViewController: UITableViewDataSource {
     func tableView(
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
@@ -122,7 +122,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         cell.selectionStyle = .none
         cell.textLabel?.font = UIFont.systemFont(ofSize: 17)
         cell.textLabel?.text = Weekdays.allCases[indexPath.row].rawValue
-        cell.backgroundColor = .ypBackgroundNight
+        cell.backgroundColor = .ypBackgroundDay
         
         let daySwitch = UISwitch()
         daySwitch.onTintColor = .ypBlue
@@ -141,4 +141,3 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         return 75
     }
 }
-

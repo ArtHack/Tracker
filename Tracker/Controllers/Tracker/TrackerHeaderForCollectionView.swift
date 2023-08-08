@@ -1,6 +1,7 @@
 import UIKit
+import SnapKit
 
-final class TrackerHeaderForCollectionView: UICollectionReusableView {
+final class HeaderCollectionView: UICollectionReusableView {
     static let identifier = "HeaderCollectionView"
     
     private let titleLabel: UILabel = {
@@ -24,11 +25,11 @@ final class TrackerHeaderForCollectionView: UICollectionReusableView {
     private func layoutSetup() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(titleLabel)
-        
-        NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 28),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+    
+        titleLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(28)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
     }
 }
