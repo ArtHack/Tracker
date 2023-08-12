@@ -34,11 +34,11 @@
 		CA81540C2A82058300304367 /* DateHalper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA81540B2A82058300304367 /* DateHalper.swift */; };
 		CA81540E2A82066D00304367 /* WeekDaysMarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA81540D2A82066D00304367 /* WeekDaysMarshalling.swift */; };
 		CA8154142A82090C00304367 /* SupplementaryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8154132A82090C00304367 /* SupplementaryHeaderView.swift */; };
+		CA9514E72A879DBC00DD2527 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA9514E52A879DBC00DD2527 /* Model.xcdatamodeld */; };
 		CA9A106429FE7CE100A8E78E /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A106329FE7CE100A8E78E /* StatisticViewController.swift */; };
 		CA9A10662A0033FD00A8E78E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A10652A0033FD00A8E78E /* TabBarController.swift */; };
 		CABB86AC2A34C2A600E398FF /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABB86AB2A34C2A600E398FF /* ScheduleViewController.swift */; };
 		CAC390142A6266C500F56765 /* TrackerHeaderForCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC390132A6266C500F56765 /* TrackerHeaderForCollectionView.swift */; };
-		CAF836272A8289D600A77970 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CAF836252A8289D600A77970 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,11 +70,11 @@
 		CA81540B2A82058300304367 /* DateHalper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHalper.swift; sourceTree = "<group>"; };
 		CA81540D2A82066D00304367 /* WeekDaysMarshalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDaysMarshalling.swift; sourceTree = "<group>"; };
 		CA8154132A82090C00304367 /* SupplementaryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryHeaderView.swift; sourceTree = "<group>"; };
+		CA9514E62A879DBC00DD2527 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		CA9A106329FE7CE100A8E78E /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		CA9A10652A0033FD00A8E78E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CABB86AB2A34C2A600E398FF /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		CAC390132A6266C500F56765 /* TrackerHeaderForCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerHeaderForCollectionView.swift; sourceTree = "<group>"; };
-		CAF836262A8289D600A77970 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +159,7 @@
 		CA77D3A42A7D70F0001BAFE6 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				CA9514E52A879DBC00DD2527 /* Model.xcdatamodeld */,
 				CA77D3A52A7D7195001BAFE6 /* TackerStore.swift */,
 				CA77D3A92A7D7221001BAFE6 /* TrackerRecordStore.swift */,
 				CA77D3A72A7D71B2001BAFE6 /* TrackerCategoryStore.swift */,
@@ -195,7 +196,6 @@
 		CAF836242A82898400A77970 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				CAF836252A8289D600A77970 /* Model.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -293,6 +293,7 @@
 				CA1427DF2A0144EB00843B2D /* TypeNewTrackerViewController.swift in Sources */,
 				CABB86AC2A34C2A600E398FF /* ScheduleViewController.swift in Sources */,
 				CA26E13E2A1C999100775932 /* TrackerCategory.swift in Sources */,
+				CA9514E72A879DBC00DD2527 /* Model.xcdatamodeld in Sources */,
 				CA26E1402A1C9A1E00775932 /* TrackerRecord.swift in Sources */,
 				CA81540C2A82058300304367 /* DateHalper.swift in Sources */,
 				CA26E1442A1CDB0400775932 /* TrackerType.swift in Sources */,
@@ -304,7 +305,6 @@
 				CA1427E82A0A1D9100843B2D /* UIColor+Extensions.swift in Sources */,
 				CA77D3BD2A7EA1F8001BAFE6 /* EmojiAndColorCollection.swift in Sources */,
 				CA636AC62A82730D00F8CD4A /* GeometricParms.swift in Sources */,
-				CAF836272A8289D600A77970 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,12 +541,12 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		CAF836252A8289D600A77970 /* Model.xcdatamodeld */ = {
+		CA9514E52A879DBC00DD2527 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				CAF836262A8289D600A77970 /* Model.xcdatamodel */,
+				CA9514E62A879DBC00DD2527 /* Model.xcdatamodel */,
 			);
-			currentVersion = CAF836262A8289D600A77970 /* Model.xcdatamodel */;
+			currentVersion = CA9514E62A879DBC00DD2527 /* Model.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
