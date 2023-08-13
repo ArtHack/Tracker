@@ -134,7 +134,6 @@
 		CA2BC48F29F6ABF90001749B /* Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				CAF836242A82898400A77970 /* CoreData */,
 				CA2BC49029F6ABF90001749B /* AppDelegate.swift */,
 				CA2BC49229F6ABF90001749B /* SceneDelegate.swift */,
 				CA77D3A42A7D70F0001BAFE6 /* Domain */,
@@ -191,13 +190,6 @@
 				CA636AC52A82730D00F8CD4A /* GeometricParms.swift */,
 			);
 			path = TrackerCreation;
-			sourceTree = "<group>";
-		};
-		CAF836242A82898400A77970 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
