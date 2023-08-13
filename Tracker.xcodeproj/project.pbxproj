@@ -23,6 +23,7 @@
 		CA2BC49529F6ABF90001749B /* TrackersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2BC49429F6ABF90001749B /* TrackersViewController.swift */; };
 		CA2BC49A29F6ABFB0001749B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA2BC49929F6ABFB0001749B /* Assets.xcassets */; };
 		CA2BC49D29F6ABFB0001749B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA2BC49B29F6ABFB0001749B /* LaunchScreen.storyboard */; };
+		CA4B839F2A829C55000C872A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA4B839D2A829C55000C872A /* Model.xcdatamodeld */; };
 		CA636AC62A82730D00F8CD4A /* GeometricParms.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA636AC52A82730D00F8CD4A /* GeometricParms.swift */; };
 		CA76900B2A5EB32A00C27D69 /* Date+Extenson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA76900A2A5EB32A00C27D69 /* Date+Extenson.swift */; };
 		CA77D3A62A7D7195001BAFE6 /* TackerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA77D3A52A7D7195001BAFE6 /* TackerStore.swift */; };
@@ -59,6 +60,7 @@
 		CA2BC49929F6ABFB0001749B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA2BC49C29F6ABFB0001749B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA2BC49E29F6ABFB0001749B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA4B839E2A829C55000C872A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		CA636AC52A82730D00F8CD4A /* GeometricParms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometricParms.swift; sourceTree = "<group>"; };
 		CA76900A2A5EB32A00C27D69 /* Date+Extenson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extenson.swift"; sourceTree = "<group>"; };
 		CA77D3A52A7D7195001BAFE6 /* TackerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TackerStore.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				CA77D3B22A7E181B001BAFE6 /* StoreUpdate.swift */,
 				CA77D3B42A7E21BE001BAFE6 /* StoreError.swift */,
 				CA81540D2A82066D00304367 /* WeekDaysMarshalling.swift */,
+				CA4B839D2A829C55000C872A /* Model.xcdatamodeld */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -285,7 +288,7 @@
 				CA1427DF2A0144EB00843B2D /* TypeNewTrackerViewController.swift in Sources */,
 				CABB86AC2A34C2A600E398FF /* ScheduleViewController.swift in Sources */,
 				CA26E13E2A1C999100775932 /* TrackerCategory.swift in Sources */,
-				CA9514E72A879DBC00DD2527 /* Model.xcdatamodeld in Sources */,
+
 				CA26E1402A1C9A1E00775932 /* TrackerRecord.swift in Sources */,
 				CA81540C2A82058300304367 /* DateHalper.swift in Sources */,
 				CA26E1442A1CDB0400775932 /* TrackerType.swift in Sources */,
@@ -533,12 +536,7 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		CA9514E52A879DBC00DD2527 /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				CA9514E62A879DBC00DD2527 /* Model.xcdatamodel */,
-			);
-			currentVersion = CA9514E62A879DBC00DD2527 /* Model.xcdatamodel */;
+
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
