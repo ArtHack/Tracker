@@ -23,6 +23,7 @@
 		CA2BC49529F6ABF90001749B /* TrackersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2BC49429F6ABF90001749B /* TrackersViewController.swift */; };
 		CA2BC49A29F6ABFB0001749B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA2BC49929F6ABFB0001749B /* Assets.xcassets */; };
 		CA2BC49D29F6ABFB0001749B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA2BC49B29F6ABFB0001749B /* LaunchScreen.storyboard */; };
+		CA4B839F2A829C55000C872A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA4B839D2A829C55000C872A /* Model.xcdatamodeld */; };
 		CA636AC62A82730D00F8CD4A /* GeometricParms.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA636AC52A82730D00F8CD4A /* GeometricParms.swift */; };
 		CA76900B2A5EB32A00C27D69 /* Date+Extenson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA76900A2A5EB32A00C27D69 /* Date+Extenson.swift */; };
 		CA77D3A62A7D7195001BAFE6 /* TackerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA77D3A52A7D7195001BAFE6 /* TackerStore.swift */; };
@@ -38,7 +39,6 @@
 		CA9A10662A0033FD00A8E78E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A10652A0033FD00A8E78E /* TabBarController.swift */; };
 		CABB86AC2A34C2A600E398FF /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABB86AB2A34C2A600E398FF /* ScheduleViewController.swift */; };
 		CAC390142A6266C500F56765 /* TrackerHeaderForCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC390132A6266C500F56765 /* TrackerHeaderForCollectionView.swift */; };
-		CAF836272A8289D600A77970 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CAF836252A8289D600A77970 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +59,7 @@
 		CA2BC49929F6ABFB0001749B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA2BC49C29F6ABFB0001749B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA2BC49E29F6ABFB0001749B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA4B839E2A829C55000C872A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		CA636AC52A82730D00F8CD4A /* GeometricParms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometricParms.swift; sourceTree = "<group>"; };
 		CA76900A2A5EB32A00C27D69 /* Date+Extenson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extenson.swift"; sourceTree = "<group>"; };
 		CA77D3A52A7D7195001BAFE6 /* TackerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TackerStore.swift; sourceTree = "<group>"; };
@@ -74,7 +75,6 @@
 		CA9A10652A0033FD00A8E78E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CABB86AB2A34C2A600E398FF /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		CAC390132A6266C500F56765 /* TrackerHeaderForCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerHeaderForCollectionView.swift; sourceTree = "<group>"; };
-		CAF836262A8289D600A77970 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +134,6 @@
 		CA2BC48F29F6ABF90001749B /* Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				CAF836242A82898400A77970 /* CoreData */,
 				CA2BC49029F6ABF90001749B /* AppDelegate.swift */,
 				CA2BC49229F6ABF90001749B /* SceneDelegate.swift */,
 				CA77D3A42A7D70F0001BAFE6 /* Domain */,
@@ -165,6 +164,7 @@
 				CA77D3B22A7E181B001BAFE6 /* StoreUpdate.swift */,
 				CA77D3B42A7E21BE001BAFE6 /* StoreError.swift */,
 				CA81540D2A82066D00304367 /* WeekDaysMarshalling.swift */,
+				CA4B839D2A829C55000C872A /* Model.xcdatamodeld */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -190,14 +190,6 @@
 				CA636AC52A82730D00F8CD4A /* GeometricParms.swift */,
 			);
 			path = TrackerCreation;
-			sourceTree = "<group>";
-		};
-		CAF836242A82898400A77970 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				CAF836252A8289D600A77970 /* Model.xcdatamodeld */,
-			);
-			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +285,7 @@
 				CA1427DF2A0144EB00843B2D /* TypeNewTrackerViewController.swift in Sources */,
 				CABB86AC2A34C2A600E398FF /* ScheduleViewController.swift in Sources */,
 				CA26E13E2A1C999100775932 /* TrackerCategory.swift in Sources */,
+				CA4B839F2A829C55000C872A /* Model.xcdatamodeld in Sources */,
 				CA26E1402A1C9A1E00775932 /* TrackerRecord.swift in Sources */,
 				CA81540C2A82058300304367 /* DateHalper.swift in Sources */,
 				CA26E1442A1CDB0400775932 /* TrackerType.swift in Sources */,
@@ -304,7 +297,6 @@
 				CA1427E82A0A1D9100843B2D /* UIColor+Extensions.swift in Sources */,
 				CA77D3BD2A7EA1F8001BAFE6 /* EmojiAndColorCollection.swift in Sources */,
 				CA636AC62A82730D00F8CD4A /* GeometricParms.swift in Sources */,
-				CAF836272A8289D600A77970 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,12 +533,12 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		CAF836252A8289D600A77970 /* Model.xcdatamodeld */ = {
+		CA4B839D2A829C55000C872A /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				CAF836262A8289D600A77970 /* Model.xcdatamodel */,
+				CA4B839E2A829C55000C872A /* Model.xcdatamodel */,
 			);
-			currentVersion = CAF836262A8289D600A77970 /* Model.xcdatamodel */;
+			currentVersion = CA4B839E2A829C55000C872A /* Model.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
