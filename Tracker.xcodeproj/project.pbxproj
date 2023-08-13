@@ -35,6 +35,7 @@
 		CA81540C2A82058300304367 /* DateHalper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA81540B2A82058300304367 /* DateHalper.swift */; };
 		CA81540E2A82066D00304367 /* WeekDaysMarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA81540D2A82066D00304367 /* WeekDaysMarshalling.swift */; };
 		CA8154142A82090C00304367 /* SupplementaryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8154132A82090C00304367 /* SupplementaryHeaderView.swift */; };
+		CA9514E72A879DBC00DD2527 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA9514E52A879DBC00DD2527 /* Model.xcdatamodeld */; };
 		CA9A106429FE7CE100A8E78E /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A106329FE7CE100A8E78E /* StatisticViewController.swift */; };
 		CA9A10662A0033FD00A8E78E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A10652A0033FD00A8E78E /* TabBarController.swift */; };
 		CABB86AC2A34C2A600E398FF /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABB86AB2A34C2A600E398FF /* ScheduleViewController.swift */; };
@@ -71,6 +72,7 @@
 		CA81540B2A82058300304367 /* DateHalper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHalper.swift; sourceTree = "<group>"; };
 		CA81540D2A82066D00304367 /* WeekDaysMarshalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDaysMarshalling.swift; sourceTree = "<group>"; };
 		CA8154132A82090C00304367 /* SupplementaryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryHeaderView.swift; sourceTree = "<group>"; };
+		CA9514E62A879DBC00DD2527 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		CA9A106329FE7CE100A8E78E /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		CA9A10652A0033FD00A8E78E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CABB86AB2A34C2A600E398FF /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		CA77D3A42A7D70F0001BAFE6 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				CA9514E52A879DBC00DD2527 /* Model.xcdatamodeld */,
 				CA77D3A52A7D7195001BAFE6 /* TackerStore.swift */,
 				CA77D3A92A7D7221001BAFE6 /* TrackerRecordStore.swift */,
 				CA77D3A72A7D71B2001BAFE6 /* TrackerCategoryStore.swift */,
@@ -192,6 +195,16 @@
 			path = TrackerCreation;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
+=======
+		CAF836242A82898400A77970 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+>>>>>>> e01e577bd5259315b8708bef05b1380c50dfa304
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -285,7 +298,11 @@
 				CA1427DF2A0144EB00843B2D /* TypeNewTrackerViewController.swift in Sources */,
 				CABB86AC2A34C2A600E398FF /* ScheduleViewController.swift in Sources */,
 				CA26E13E2A1C999100775932 /* TrackerCategory.swift in Sources */,
+<<<<<<< HEAD
 				CA4B839F2A829C55000C872A /* Model.xcdatamodeld in Sources */,
+=======
+				CA9514E72A879DBC00DD2527 /* Model.xcdatamodeld in Sources */,
+>>>>>>> e01e577bd5259315b8708bef05b1380c50dfa304
 				CA26E1402A1C9A1E00775932 /* TrackerRecord.swift in Sources */,
 				CA81540C2A82058300304367 /* DateHalper.swift in Sources */,
 				CA26E1442A1CDB0400775932 /* TrackerType.swift in Sources */,
@@ -533,12 +550,21 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
+<<<<<<< HEAD
 		CA4B839D2A829C55000C872A /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				CA4B839E2A829C55000C872A /* Model.xcdatamodel */,
 			);
 			currentVersion = CA4B839E2A829C55000C872A /* Model.xcdatamodel */;
+=======
+		CA9514E52A879DBC00DD2527 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CA9514E62A879DBC00DD2527 /* Model.xcdatamodel */,
+			);
+			currentVersion = CA9514E62A879DBC00DD2527 /* Model.xcdatamodel */;
+>>>>>>> e01e577bd5259315b8708bef05b1380c50dfa304
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
