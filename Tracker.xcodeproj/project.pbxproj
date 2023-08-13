@@ -195,16 +195,6 @@
 			path = TrackerCreation;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-=======
-		CAF836242A82898400A77970 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
->>>>>>> e01e577bd5259315b8708bef05b1380c50dfa304
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -298,11 +288,7 @@
 				CA1427DF2A0144EB00843B2D /* TypeNewTrackerViewController.swift in Sources */,
 				CABB86AC2A34C2A600E398FF /* ScheduleViewController.swift in Sources */,
 				CA26E13E2A1C999100775932 /* TrackerCategory.swift in Sources */,
-<<<<<<< HEAD
-				CA4B839F2A829C55000C872A /* Model.xcdatamodeld in Sources */,
-=======
-				CA9514E72A879DBC00DD2527 /* Model.xcdatamodeld in Sources */,
->>>>>>> e01e577bd5259315b8708bef05b1380c50dfa304
+
 				CA26E1402A1C9A1E00775932 /* TrackerRecord.swift in Sources */,
 				CA81540C2A82058300304367 /* DateHalper.swift in Sources */,
 				CA26E1442A1CDB0400775932 /* TrackerType.swift in Sources */,
@@ -550,21 +536,7 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-<<<<<<< HEAD
-		CA4B839D2A829C55000C872A /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				CA4B839E2A829C55000C872A /* Model.xcdatamodel */,
-			);
-			currentVersion = CA4B839E2A829C55000C872A /* Model.xcdatamodel */;
-=======
-		CA9514E52A879DBC00DD2527 /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				CA9514E62A879DBC00DD2527 /* Model.xcdatamodel */,
-			);
-			currentVersion = CA9514E62A879DBC00DD2527 /* Model.xcdatamodel */;
->>>>>>> e01e577bd5259315b8708bef05b1380c50dfa304
+
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
